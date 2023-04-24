@@ -7,6 +7,10 @@
         <div class="row">
             <h1 class="text-center mt-3">{{ posts.title }}</h1>
             <div class="text-center mt-3">{{ posts.body|safe }}</div>
+            {% if user == posts.author %}
+                <div class="col-1 ms-auto"><a class="btn btn-primary" href="{% url 'edit_post' posts.slug %}">Edit</a></div>
+                <div class="col-1 me-auto"><a class="btn btn-danger" href="{% url 'delete_post' posts.slug %}">Delete</a></div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

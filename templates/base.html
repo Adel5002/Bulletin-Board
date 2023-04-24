@@ -30,9 +30,11 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">Contact Me</a>
                         </li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a href="{% url 'add_post' %}" class="nav-link">Add Post</a>
                         </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex">
                         <input type="search" placeholder="search" class="form-control me-2">

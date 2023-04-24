@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from .forms import PostForm
 from .models import Post
@@ -33,4 +33,21 @@ class CreatePost(CreateView):
 
         return super().form_valid(form)
 
+
+class EditPost(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'edit_post.html'
+
+    def get_queryset(self):
+        self.post = get_object_or_404(Post, slug=self.kwargs['slug'])
+        queryset = Post.objects.filter()
+        return queryset
+
+
+class DeletePost(DeleteView):
+    model = Post
+    template_name = 'delete_post.html'
+
+    success_url = reverse_lazy('home')
 
