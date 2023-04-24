@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Create Post{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="container">
+        <h1>Add Post...</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            <div class="mb-3 col-7"><input type="{{form.title.label}}" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" placeholder="{{ form.title.label }}" class="form-control form-control-lg"></div>
+            <div class="mb-3 col-7">{{ form.categories }}</div>
+            <div class="mb-3">{{ form.body }}</div>
+            <div class="mb-3 col-3">{{ form.upload }}</div>
+
+            <div><button class="btn btn-secondary">Post</button></div>
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Details{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mt-3">{{ posts.title }}</h1>
+            <div class="text-center mt-3">{{ posts.body|safe }}</div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Home page{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% for p in posts %}
+        <div class="row">
+            <div class="post-container mt-5">
+                <div class="post-category mb-2">category · {{ p.categories }}</div>
+                <h4 class="post-title">{{ p.title }}</h4>
+                <p class="post-body mb-4">{{ p.body|striptags|safe|truncatechars_html:100 }}</p>
+                <div class="post-image">
+                    <img src="{{ p.upload.url }}">
+                </div>
+                <a class="post-btn btn btn-primary mt-4" href="{{ p.get_absolute_url }}">Click to see</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
