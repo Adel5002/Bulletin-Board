@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
     'allauth.socialaccount.providers.google',
+
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER") + '@yandex.ru'
@@ -80,6 +83,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -100,6 +104,8 @@ WSGI_APPLICATION = 'MMORPGproj.wsgi.application'
 
 LOGIN_REDIRECT_URL = "/"
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
