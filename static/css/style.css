@@ -57,4 +57,13 @@ body {
     float: right
 }
 
+.post-registration-btn {
+    color: #000000;
+    text-decoration: none;
+}
+
+.signout-btn:hover {
+    color: #0000ff;
+}
+
 /* Post Container */
