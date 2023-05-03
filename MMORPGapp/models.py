@@ -12,6 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     body = RichTextField(blank=True,  null=True)
     slug = models.SlugField(null=True, unique=True, db_index=True)
+    dateCreation = models.DateTimeField(auto_now_add=True)
     categories = models.ForeignKey('Category', on_delete=models.CASCADE)
     upload = models.FileField(upload_to='uploads/', blank=True, default='/media/images/pngwing.com.png')
 

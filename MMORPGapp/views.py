@@ -18,20 +18,6 @@ class BoardDetailView(DetailView):
     template_name = 'postdetails.html'
     context_object_name = 'posts'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["other_user_comments"] = Comment.objects.all().order_by('id')
-        paginator = Paginator(context["other_user_comments"], 3)
-        page_two = self.request.GET.get("other-page")
-        try:
-            context["other_user_comments"] = paginator.page(page_two)
-        except PageNotAnInteger:
-            context["other_user_comments"] = paginator.page(1)
-        except EmptyPage:
-            context["other_user_comments"] = paginator.page(paginator.num_pages)
-
-        return context
 
 
 

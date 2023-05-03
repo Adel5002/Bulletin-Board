@@ -104,6 +104,8 @@ WSGI_APPLICATION = 'MMORPGproj.wsgi.application'
 
 LOGIN_REDIRECT_URL = "/"
 
+SITE_URL = 'http://127.0.0.1:8000'
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
