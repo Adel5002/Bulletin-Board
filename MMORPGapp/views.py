@@ -19,8 +19,6 @@ class BoardDetailView(DetailView):
     context_object_name = 'posts'
 
 
-
-
 class CreatePost(CreateView):
     model = Post
     form_class = PostForm
@@ -68,4 +66,27 @@ class AddComment(CreateView):
 
     def get_success_url(self):
         return reverse('post_details', kwargs={'slug': self.object.post.slug})
+
+
+class PrivateAccount(ListView):
+    template_name = 'Responses_to_user_posts.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        queryset = Post.objects.filter(author=self.request.user)
+        return queryset
+
+
+class PrivAccPostResponses(DetailView):
+    template_name = 'post_responses.html'
+    context_object_name = 'posts'
+    model = Post
+
+
+
+
+
+
+
+
 

@@ -43,7 +43,7 @@
                           {% if redirect_field_value %}
                           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                           {% endif %}
-                          {{ user.username }} | <button class="signout-btn" type="submit">Sign Out</button>
+                          <a href="{% url 'private' %}">{{ user.username }}</a> | <button class="signout-btn" type="submit">Sign Out</button>
                         </form>
                     </div>
                     {% else %}

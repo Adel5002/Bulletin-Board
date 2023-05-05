@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Responses{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for comment in posts.comments.all %}
+                    <div>
+                      <div class="comment-header mt-4 mb-3">commentator · <strong style="color: #000000;">{{ comment.commentator }}</strong> | date · <strong style="color: #000000;">{{ comment.date_added }}</strong></div>
+                    </div>
+                    <p>{{ comment.body }}</p>
+                    <br>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
