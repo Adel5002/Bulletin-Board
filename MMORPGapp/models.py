@@ -40,6 +40,7 @@ class Comment(models.Model):
     body = models.TextField()
     commentator = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     date_added = models.DateTimeField(auto_now_add=True)
+    accept_comment = models.BooleanField(default=False)
 
     def __str__(self):
         return self.body

@@ -1,5 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -77,10 +78,43 @@ class PrivateAccount(ListView):
         return queryset
 
 
+def accept_comments(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.accept_comment = True
+    comment.save()
+    return redirect('responses', comment.post.slug)
+
+
+def reject_comments(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.accept_comment = False
+    comment.save()
+    return redirect('responses', comment.post.slug)
+
+
 class PrivAccPostResponses(DetailView):
     template_name = 'post_responses.html'
     context_object_name = 'posts'
     model = Post
+
+
+    # def post(self, request, *args, **kwargs):
+    #     comment_id = kwargs.get('comment_id')
+    #     comment = Comment.objects.get(id=comment_id)
+    #     if 'accept' in request.POST:
+    #         comment.accept_comment = True
+    #         comment.save()
+    #     elif 'reject' in request.POST:
+    #         comment.accept_comment = False
+    #         comment.save()
+    #     return self.get(request, *args, **kwargs)
+
+
+
+
+
+
+
 
 
 

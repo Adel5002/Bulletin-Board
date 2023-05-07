@@ -6,11 +6,26 @@
     <div class="container">
         <div class="row">
             {% for comment in posts.comments.all %}
+                {% if comment.accept_comment == True %}
                     <div>
-                      <div class="comment-header mt-4 mb-3">commentator · <strong style="color: #000000;">{{ comment.commentator }}</strong> | date · <strong style="color: #000000;">{{ comment.date_added }}</strong></div>
+                      <div class="comment-header mt-4 mb-3">commentator · <strong style="color: #000000;">{{ comment.commentator }}</strong> | date · <strong style="color: #000000;">
+                          {{ comment.date_added }}</strong> &nbsp; accepted
+                        <a class="btn btn-danger" href="{% url 'reject_comment'  comment.id%}">Reject</a>
+                      </div>
                     </div>
                     <p>{{ comment.body }}</p>
                     <br>
+                {% elif comment.accept_comment == False %}
+                     <div>
+                      <div class="comment-header mt-4 mb-3">commentator · <strong style="color: #000000;">{{ comment.commentator }}</strong> | date · <strong style="color: #000000;">
+                          {{ comment.date_added }}</strong> &nbsp; rejected
+                          <a class="btn btn-success" href="{% url 'accept_comment'  comment.id%}">Accept</a>
+                      </div>
+                     </div>
+                    <p>{{ comment.body }}</p>
+                    <br>
+
+                {% endif %}
             {% endfor %}
         </div>
     </div>
