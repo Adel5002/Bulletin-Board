@@ -1,6 +1,9 @@
-from allauth.account.forms import LoginForm
+from django import forms
+from allauth.account.forms import SignupForm
+from django.contrib.auth.models import Group
 from django import forms
 from .models import Post, Comment
+from django.contrib.auth.models import Group
 
 
 class PostForm(forms.ModelForm):
@@ -25,4 +28,20 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
+
+
+
+class CustomSignupForm(SignupForm):
+    subscribe = forms.BooleanField(label='Подписаться на новостную рассылку', required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input', 'type': 'checkbox'}))
+
+
+    field_order = ['username', 'email', 'password1', 'password2', 'subscribe']
+
+    def save(self, request):
+        user = super(CustomSignupForm, self).save(request)
+        if self.cleaned_data['subscribe']:
+            subscribed_group = Group.objects.get(name='subscribed_users')
+            subscribed_group.user_set.add(user)
+
+        return user
 

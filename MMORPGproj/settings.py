@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'MMORPGapp',
     'ckeditor',
+    'django_celery_beat',
 
     'allauth',
     'allauth.account',
@@ -180,3 +181,11 @@ CKEDITOR_CONFIGS = {
         'width': 'auto',
     },
 }
+
+ACCOUNT_FORMS = {'signup': 'MMORPGapp.forms.CustomSignupForm', }
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
