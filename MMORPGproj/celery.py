@@ -13,7 +13,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'every_monday_8am_send_notification': {
         'task': 'MMORPGapp.tasks.send_newsletter',
-        'schedule': 60,
+        'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
     }
 }
 
