@@ -66,6 +66,11 @@ body {
     color: #0000ff;
 }
 
+.page-item.page-num-selected {
+    background-color: #89CFF0;
+    color: #ffffff;
+}
+
 /* Post Container */
 
 

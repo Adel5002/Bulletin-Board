@@ -1,5 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -12,6 +11,7 @@ class BoardListView(ListView):
     model = Post
     template_name = 'index.html'
     context_object_name = 'posts'
+    paginate_by = 3
 
 
 class BoardDetailView(DetailView):
@@ -72,6 +72,7 @@ class AddComment(CreateView):
 class PrivateAccount(ListView):
     template_name = 'Responses_to_user_posts.html'
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = Post.objects.filter(author=self.request.user)
