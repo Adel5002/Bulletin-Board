@@ -98,3 +98,5 @@ def notify_user_post(sender, instance, created, **kwargs):
 #     print(email)
 #     message.attach_alternative(html_content, 'text/html')
 #     message.send()
+
+

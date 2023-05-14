@@ -12,6 +12,7 @@ class BoardListView(ListView):
     template_name = 'index.html'
     context_object_name = 'posts'
     paginate_by = 3
+    ordering = ['dateCreation']
 
 
 class BoardDetailView(DetailView):
@@ -73,6 +74,7 @@ class PrivateAccount(ListView):
     template_name = 'Responses_to_user_posts.html'
     context_object_name = 'posts'
     paginate_by = 3
+    ordering = ['dateCreation']
 
     def get_queryset(self):
         queryset = Post.objects.filter(author=self.request.user)
